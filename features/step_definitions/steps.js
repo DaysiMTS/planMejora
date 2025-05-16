@@ -1,5 +1,7 @@
 import { Given, When, Then } from '@cucumber/cucumber';
 import puppeteer from 'puppeteer';
+import fs from 'fs';
+import path from 'path';
 
 import { timeout } from 'puppeteer-core';
 
@@ -10,7 +12,7 @@ Given('Entrar a Mercado Libre', async function()  {
     page = await browser.newPage();
     await page.goto("https://www.mercadolibre.com");
     //await page.waitForSelector('.ui-search-result', { timeout: 10000 });
-    await page.screenshot({ path: 'capturas/screenshot.png' });
+    await page.screenshot({ path: 'capturas/1_Entrar a Mercado Libre.png' });
 });
 
 //Se selecciona el pais
@@ -18,7 +20,7 @@ When('selecciono "Mexico" como pais', async function () {
     try {
         //Seleeciona el pais de la lista
         await page.click('nav ul.ml-site-list li.ml-site-mlm');
-        await page.screenshot({ path: 'capturas/screenshot1.png' });
+        await page.screenshot({ path: 'capturas/2_selecciono_Mexico.png' });
     } catch (error) {
         console.error('Error al seleccionar pais', error);
     }
@@ -33,7 +35,7 @@ When('busca {string}', async function (palabra) {
         await page.type('input[name="as_word"]', palabra, { delay: 100 });
         // Se da clic en el botón de búsqueda
         await page.keyboard.press('Enter');
-        await page.screenshot({ path: 'capturas/screenshot2.png' });
+        await page.screenshot({ path: 'capturas/3_busca_PlayStation.png' });
     } catch (error) {
         console.error(`Error al buscar "${palabra}":`, error);
     }
@@ -46,7 +48,7 @@ When('busca {string}', async function (palabra) {
         // Se da clic en el filtro de Nuevo
         await page.click('.ui-search-filter-dl a[title^="'+Nuevo+'"]');
         //await page.waitForNavigation({ waitUntil: 'networkidle2' });
-        await page.screenshot({ path: 'capturas/screenshot3.png' });
+        await page.screenshot({ path: 'capturas/4_Filtro_Nuevo.png' });
     } catch (error) {
         console.error(`Error al filtrar por condiciones "${Nuevo}":`, error);
     }
@@ -58,7 +60,7 @@ When('filtrar por ubicacion {string}', async function(estado) {
         await page.waitForSelector('.ui-search-filter-dl a[title^="'+estado+'"]', { timeout: 10000 });
         // Se da clic en el Distrito Federal
         await page.click('.ui-search-filter-dl a[title^="'+estado+'"]');
-        await page.screenshot({ path: 'capturas/screenshot4.png' });
+        await page.screenshot({ path: 'capturas/5_Filtro_ubicacion.png' });
     } catch (error) {
         console.error(`Error al filtrar por condiciones "${estado}":`, error);
     }
@@ -72,14 +74,14 @@ When('ordenar de mayor a menor precio', async function() {
         // Se da clic en el menú de ordenamiento
         await page.locator('.andes-dropdown__trigger').click();
         //await page.click('.andes-dropdown__trigger');
-        await page.screenshot({ path: 'capturas/screenshot5.png' });
+        await page.screenshot({ path: 'capturas/6_Ordenar_Select.png' });
 
         // Espera a que la opción "Mayor precio" esté visible
         await page.waitForSelector('li[data-key="price_desc"]', {visible: true});
         // Se da clic en la opción "Mayor precio"
         await page.locator('li[data-key="price_desc"]').click();
         //await page.click('li[data-key="price_desc"]');
-        await page.screenshot({ path: 'capturas/screenshot6.png' });
+        await page.screenshot({ path: 'capturas/7_ordenar_aplicado.png' });
         //await page.locator('li[data-key="price_desc"]').click();        
     }
     catch (error) {
@@ -110,14 +112,53 @@ When('obtener el nombre y precio de los primeros 5 productos', async function() 
     
 });
 
-Then ('imprimir los resultados', async function () {
+When ('imprimir los resultados', async function () {
     try {
         console.log("Los primeros 5 productos son:");
         console.log(productos);
     } catch (error) {
         console.error(`Error al imprimir los resultados`, error);
-    }finally {
-      await browser.close();
     }
 });
 
+Then('Generar un reporte en formato pdf de los resultados', async function () {
+   try {
+        const capturasDir = path.join(process.cwd(), 'capturas');
+        const imagenes = fs.readdirSync(capturasDir)
+            .filter(file => /\.(png|jpg|jpeg)$/i.test(file))
+            .sort();
+
+        // Convierte cada imagen a base64
+        const imagenesHtml = imagenes.map(img => {
+            const imgPath = path.join(capturasDir, img);
+            const ext = path.extname(img).substring(1);
+            const base64 = fs.readFileSync(imgPath, { encoding: 'base64' });
+            return `<li><div><p>${img}</p><img src="data:image/${ext};base64,${base64}" style="width:500px; margin-bottom:20px;"/></div></li>`;
+        }).join('');
+
+        let html = `
+            <h1>Reporte de Ejecución - Mercado Libre</h1>
+            <h2>Pasos</h2>
+            <ul>
+              ${imagenesHtml}
+            </ul>
+            <p>Fecha: ${new Date().toLocaleString()}</p>
+        `;
+
+        const reportesDir = path.join(process.cwd(), 'reportes');
+        const pdfPath = path.join(reportesDir, 'reporte-ejecucion.pdf');
+        if (!fs.existsSync(reportesDir)) {
+            fs.mkdirSync(reportesDir, { recursive: true });
+        }
+
+        const reportPage = await browser.newPage();
+        await reportPage.setContent(html, { waitUntil: 'networkidle0' });
+        await reportPage.pdf({ path: pdfPath, format: 'A4' });
+        await reportPage.close();
+        console.log(`Reporte PDF generado: ${pdfPath}`);
+    } catch (error) {
+        console.error('Error al generar el reporte PDF:', error);
+    } finally {
+        await browser.close();
+    }
+});

@@ -8,5 +8,6 @@ Feature: Busqueda de Consola
         And filtrar por ubicacion "Distrito Federal"
         And ordenar de mayor a menor precio
         And obtener el nombre y precio de los primeros 5 productos
-        Then imprimir los resultados
+        And imprimir los resultados
+        Then Generar un reporte en formato pdf de los resultados
 
