@@ -14,14 +14,13 @@ puppeteer
    git clone https://github.com/DaysiMTS/planMejora.git
    cd planMejora
 
-2. Instala las dependencias:
-```bash
-npm install
+1. Para instalar las dependencias, se ejecuta:
+   ```bash
+   npm install
 
-3. Ejecución
-Para correr los tests ejecuta:
-```bash
-npm run test
+1. Ejecucion:
+   ```bash
+   npm run test
 
 ## Estructura
 
