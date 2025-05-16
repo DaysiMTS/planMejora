@@ -1,5 +1,4 @@
 # Automatización de Pruebas: Mercado Libre
-```bash
    Este proyecto automatiza la búsqueda y filtrado de productos en [Mercado Libre](https://www.mercadolibre.com) 
    usando **Puppeteer** y **Cucumber.js** (BDD).
 
