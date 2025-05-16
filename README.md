@@ -32,7 +32,7 @@ npm run test
 
 **`/capturas/`**: Carpeta donde se guardan las capturas de pantalla por paso.
 
-**`/capturas/`**: Reporte de ejecucion
+**`/reportes/`**: Reporte de ejecucion
 
 ## 📌 Ejemplo de salida
 ```bash
