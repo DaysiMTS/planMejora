@@ -1,6 +1,6 @@
 # Automatización de Pruebas: Mercado Libre
-   Este proyecto automatiza la búsqueda y filtrado de productos en [Mercado Libre](https://www.mercadolibre.com) 
-   usando **Puppeteer** y **Cucumber.js** (BDD).
+Este proyecto automatiza la búsqueda y filtrado de productos en [Mercado Libre](https://www.mercadolibre.com) 
+usando **Puppeteer** y **Cucumber.js** (BDD).
 
 ## Dependencias principales
 puppeteer
@@ -8,16 +8,16 @@ puppeteer
 
 ## Instalación
 
-1. Clona el repositorio:
+Clona el repositorio:
    ```bash
    git clone https://github.com/DaysiMTS/planMejora.git
    cd planMejora
 
-1. Para instalar las dependencias, se ejecuta:
+Para instalar las dependencias, se ejecuta:
    ```bash
    npm install
 
-1. Ejecucion:
+Ejecucion:
    ```bash
    npm run test
 
@@ -52,6 +52,7 @@ puppeteer
     precio: '19,999'
   }
 ]
+
 
 
 ## Notas
