@@ -3,11 +3,9 @@
 Este proyecto automatiza la búsqueda y filtrado de productos en [Mercado Libre](https://www.mercadolibre.com) 
 usando **Puppeteer** y **Cucumber.js** (BDD).
 
-## Estructura
-
-- `/features/test.feature`: Escenario BDD para buscar y filtrar productos.
-- `/features/step_definitions/steps.js`: Definiciones de pasos con Puppeteer.
-- `/capturas/`: Carpeta donde se guardan capturas de pantalla de cada paso.
+## Dependencias principales
+puppeteer
+@cucumber/cucumber
 
 ## Instalación
 
@@ -17,31 +15,51 @@ usando **Puppeteer** y **Cucumber.js** (BDD).
    cd planMejora
 
 2. Instala las dependencias:
-3.  ```bash
+```bash
 npm install
-4. Ejecución
+
+3. Ejecución
 Para correr los tests ejecuta:
- ```bash
+```bash
 npm run test
 
-##¿Qué hace el flujo automatizado?
-1. Abre Mercado Libre.
-2. Selecciona el país "México".
-3. Busca "Playstation 5".
-4. Filtra por condición "Nuevo".
-5. Filtra por ubicación "Distrito Federal".
-6. Ordena los resultados de mayor a menor precio.
-7. Obtiene el nombre y precio de los primeros 5 productos.
-8. Imprime los resultados en consola y toma capturas de pantalla de cada paso.
+## Estructura
 
-##Notas
+- `/features/test.feature`: Escenario BDD para buscar y filtrar productos.
+- `/features/step_definitions/steps.js`: Definiciones de pasos con Puppeteer.
+- `/capturas/`: Carpeta donde se guardan capturas de pantalla de cada paso.
+
+## Ejemplo de salida
+Los primeros 5 productos son:
+[
+  {
+    nombre: 'Consola Sony Playstation 5 Standard Color Blanco',
+    precio: '42,000'
+  },
+  {
+    nombre: 'Consola Sony Playstation 5 Digital Edición 30º Aniversario 1 Tb Gris Gris',
+    precio: '34,999'
+  },
+  {
+    nombre: 'Sony Playstation 5 Slim Digital 1tb Edición 30 Aniversario + Unidad Lectora De Discos Para Ps5.',
+    precio: '21,703'
+  },
+  {
+    nombre: 'Consola Sony Playstation 5 Digital 30o Aniversario 1 Tb Gris',
+    precio: '19,999'
+  },
+  {
+    nombre: 'Playstation 5 Digital Edición 30 Aniversario Slim Color Gris',
+    precio: '19,999'
+  }
+]
+
+## Notas
 Las capturas de pantalla se guardan en la carpeta /capturas.
 Si algún selector cambia en Mercado Libre, deberás actualizar los selectores en steps.js.
 El navegador se abre en modo no headless para facilitar la depuración.
 
-##Dependencias principales
-puppeteer
-@cucumber/cucumber
+
 
 Autor: Daysi M Tolentino Sierra
 
