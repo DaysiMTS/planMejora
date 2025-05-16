@@ -1,43 +1,39 @@
-🧪 Automatización de Pruebas: Mercado Libre
+# 🧪 Automatización de Pruebas: Mercado Libre
 Este proyecto automatiza la búsqueda y filtrado de productos en Mercado Libre usando Puppeteer y Cucumber.js (BDD).
 
-📦 Dependencias principales
+## 📦 Dependencias principales
 puppeteer
 
 @cucumber/cucumber
 
-⚙️ Instalación
+## ⚙️ Instalación
 Clona el repositorio y navega al directorio:
-
-bash
-Copiar
-Editar
+```bash
 git clone https://github.com/DaysiMTS/planMejora.git
 cd planMejora
+```
+
+## Instala dependecias
 Instala las dependencias necesarias:
-
-bash
-Copiar
-Editar
+```bash
 npm install
-🚀 Ejecución
+```
+
+## 🚀 Ejecución
 Para ejecutar las pruebas:
-
-bash
-Copiar
-Editar
+```bash
 npm run test
-📁 Estructura del Proyecto
-/features/test.feature: Escenario BDD para buscar y filtrar productos.
+```
 
-/features/step_definitions/steps.js: Definiciones de pasos usando Puppeteer.
+## 📁 Estructura del Proyecto
+**`features/test.feature`**: Escenario BDD para buscar y filtrar productos.
 
-/capturas/: Carpeta donde se guardan las capturas de pantalla por paso.
+**`/features/step_definitions/steps.js`**: Definiciones de pasos usando Puppeteer.
 
-📌 Ejemplo de salida
-bash
-Copiar
-Editar
+**`/capturas/`**: Carpeta donde se guardan las capturas de pantalla por paso.
+
+## 📌 Ejemplo de salida
+```bash
 Los primeros 5 productos son:
 [
   {
@@ -61,7 +57,9 @@ Los primeros 5 productos son:
     precio: '19,999'
   }
 ]
-📝 Notas
+```
+
+## 📝 Notas
 Las capturas de pantalla se almacenan en la carpeta /capturas.
 
 Si Mercado Libre cambia su estructura o selectores, será necesario actualizar el archivo steps.js.
@@ -70,5 +68,4 @@ El navegador se ejecuta en modo no headless para facilitar la depuración visual
 
 👩‍💻 Autor
 Daysi M Tolentino Sierra
-GitHub
 
