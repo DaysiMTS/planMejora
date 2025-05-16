@@ -1,7 +1,7 @@
 # Automatización de Pruebas: Mercado Libre
-
-Este proyecto automatiza la búsqueda y filtrado de productos en [Mercado Libre](https://www.mercadolibre.com) 
-usando **Puppeteer** y **Cucumber.js** (BDD).
+```bash
+   Este proyecto automatiza la búsqueda y filtrado de productos en [Mercado Libre](https://www.mercadolibre.com) 
+   usando **Puppeteer** y **Cucumber.js** (BDD).
 
 ## Dependencias principales
 puppeteer
@@ -29,7 +29,8 @@ puppeteer
 - `/capturas/`: Carpeta donde se guardan capturas de pantalla de cada paso.
 
 ## Ejemplo de salida
-Los primeros 5 productos son:
+```bash
+   Los primeros 5 productos son:
 [
   {
     nombre: 'Consola Sony Playstation 5 Standard Color Blanco',
@@ -52,6 +53,7 @@ Los primeros 5 productos son:
     precio: '19,999'
   }
 ]
+
 
 ## Notas
 Las capturas de pantalla se guardan en la carpeta /capturas.
