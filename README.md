@@ -17,12 +17,14 @@ usando **Puppeteer** y **Cucumber.js** (BDD).
    cd planMejora
 
 2. Instala las dependencias:
+3.  ```bash
 npm install
-3. Ejecución
+4. Ejecución
 Para correr los tests ejecuta:
+ ```bash
 npm run test
 
-¿Qué hace el flujo automatizado?
+##¿Qué hace el flujo automatizado?
 1. Abre Mercado Libre.
 2. Selecciona el país "México".
 3. Busca "Playstation 5".
@@ -32,12 +34,12 @@ npm run test
 7. Obtiene el nombre y precio de los primeros 5 productos.
 8. Imprime los resultados en consola y toma capturas de pantalla de cada paso.
 
-Notas
+##Notas
 Las capturas de pantalla se guardan en la carpeta /capturas.
 Si algún selector cambia en Mercado Libre, deberás actualizar los selectores en steps.js.
 El navegador se abre en modo no headless para facilitar la depuración.
 
-Dependencias principales
+##Dependencias principales
 puppeteer
 @cucumber/cucumber
 
